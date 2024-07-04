@@ -1,0 +1,34 @@
+<div id="cesiumOverlay">
+    <!-- <span class="closeButton" onclick="closeCesium()">X</span> -->
+	<!-- <button id="toggleButton1">2D View</button> -->
+    <div id="cesiumContainer" class="fullsize">
+		<div id="toolbar">
+			
+			
+			<button id="calculate_exposure_3d">Classify Buildings</button>
+			<button id="show_stats">Show Statistics</button>
+			<button id="textured_3d">Textured 3D (Bef & Aft)</button>
+			<!-- <button id="close_cesium">Close 3D Viewer</button> -->
+			
+			<button id="swth_2D_View">2D View</button>
+			
+			<div id="input_ovly_file">Add File (Exp)
+				<span class="tooltiptext">Add External Geotiff files to overlay and analyse. Still in experimental phase as it does not work for all geotiff files that does not have proper Coordinate system information.</span>
+			</div>
+			<button id="add_fld_mesh">Add Flood Mesh (Exp)
+				<span class="tooltiptext">Add flood height as a 3D Mesh. It is an experimental feature added just for testing purposes.</span>
+			</button>
+
+			<div id="infoDiv"></div>
+		</div>
+		<!-- <div class="cesium-viewer-bottom">
+			<div id="legend">
+				<h3 style="background-color: white;">Raster Value Legend</h3>
+				<div style="background-color: white;"><span style="background-color: red;"></span> > 1</div>
+				<div style="background-color: white;"><span style="background-color: orange;"></span> > 0.5</div>
+				<div style="background-color: white;"><span style="background-color: lightgreen;"></span> ≤ 0.5</div>
+			</div>
+		</div> -->
+	</div>
+  </div>  
+  	<script src="js/libs/Cesium.js"></script>
