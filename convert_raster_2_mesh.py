@@ -1,87 +1,78 @@
-import rasterio
-import json
+import bpy
 import numpy as np
-from pyproj import Transformer
+import rasterio
+from affine import Affine
 
-def raster_to_georeferenced_json(raster_file, json_file, src_crs, dest_crs="EPSG:4326"):
-    transformer = Transformer.from_crs(src_crs, dest_crs, always_xy=True)
+def clear_scene():
+    bpy.ops.object.select_all(action='SELECT')
+    bpy.ops.object.delete(use_global=False)
 
-    with rasterio.open(raster_file) as dataset:
-        band = dataset.read(1)
-        transform = dataset.transform
+def create_flood_mesh(heightmap, width, height, transform):
+    clear_scene()
+    vertices = []
+    faces = []
+    
+    vertex_map = {}
+    new_index = 0
 
-        elevation_list = []
-        rows, cols = band.shape
-        for row in range(rows):
-            for col in range(cols):
-                x, y = rasterio.transform.xy(transform, row, col)
-                lon, lat = transformer.transform(x, y)
-                elevation = band[row, col]
-                if not np.isnan(elevation):
-                    elevation_list.append({'longitude': lon, 'latitude': lat, 'elevation': elevation})
+    for i in range(height):
+        for j in range(width):
+            if heightmap[i, j] > 0.5:  # Modify if needed
+                x, y = transform * (j, i) # transform
+                vertex_map[(i, j)] = new_index
+                vertices.append((x, y, heightmap[i, j]))  # Use transformed coordinates
+                new_index += 1
 
-    with open(json_file, 'w') as f:
-        json.dump(elevation_list, f)
+    for i in range(height - 1):
+        for j in range(width - 1):
+            if (i, j) in vertex_map and (i, j + 1) in vertex_map and (i + 1, j + 1) in vertex_map and (i + 1, j) in vertex_map:
+                faces.append((
+                    vertex_map[(i, j)],
+                    vertex_map[(i, j + 1)],
+                    vertex_map[(i + 1, j + 1)],
+                    vertex_map[(i + 1, j)]
+                ))
 
-# Example usage
-raster_to_georeferenced_json('flood_height_s1.tif', 'output_3dmesh_s1.json', 'EPSG:32620')  # Replace 'EPSG:32633' with your raster's CRS
+    mesh = bpy.data.meshes.new("WaterMesh")
+    mesh.from_pydata(vertices, [], faces)
+    mesh.update()
+
+    obj = bpy.data.objects.new("FloodObject", mesh)
+    bpy.context.collection.objects.link(obj)
+    bpy.context.view_layer.objects.active = obj
+
+    # Add transform info for georeferencing
+    affine_transform = {
+        "a": transform.a,
+        "b": transform.b,
+        "c": transform.c,
+        "d": transform.d,
+        "e": transform.e,
+        "f": transform.f
+    }
+
+    # Calculate bounds in world coordinates
+    min_x, min_y = transform * (0, 0)
+    max_x, max_y = transform * (width, height)
+    bounds = {
+        "min_x": min_x,
+        "min_y": min_y,
+        "max_x": max_x,
+        "max_y": max_y
+    }
+
+    # Assign properties to user data
+    obj.data["affine_transform"] = affine_transform
+    obj.data["bounds"] = bounds
+
+    # Log properties to verify
+    print("Affine Transform:", affine_transform)
+    print("Bounds:", bounds)
 
 
-#import rasterio
-#import json
-#import numpy as np
+src = rasterio.open('flood_height.tif')
+array = src.read(1)
+transform = src.transform
 
-#def raster_to_georeferenced_json(raster_file, json_file):
-#    with rasterio.open(raster_file) as dataset:
-#        band = dataset.read(1)
-#        transform = dataset.transform
-#
-#        elevation_list = []
-#        rows, cols = band.shape
-#        for row in range(rows):
-#            for col in range(cols):
-#                elevation = band[row, col]
-#                if not np.isnan(elevation):
-#                    x, y = rasterio.transform.xy(transform, row, col)
-#                    elevation_list.append({'longitude': x, 'latitude': y, 'elevation': elevation})
-#
-#    with open(json_file, 'w') as f:
-#        json.dump(elevation_list, f)
-
-#raster_to_georeferenced_json('flood_height.tif', 'output_3dmesh.json')
-
-
-
-
-#import gdal
-#import numpy as np
-#import json
-
-#def raster_to_georeferenced_json(raster_file, json_file):
-    # Open the raster file
-#    dataset = gdal.Open(raster_file)
-#    band = dataset.GetRasterBand(1)
-#    elevation_data = band.ReadAsArray()
-
-    # Get geotransform and metadata
-#    geotransform = dataset.GetGeoTransform()
-#    x_origin = geotransform[0]
-#    y_origin = geotransform[3]
-#    pixel_width = geotransform[1]
-#    pixel_height = geotransform[5]
-
-    # Convert elevation data to a list of dictionaries with georeferenced coordinates
-#    elevation_list = []
-#    rows, cols = elevation_data.shape
-#    for row in range(rows):
-#        for col in range(cols):
-#            x = x_origin + col * pixel_width
-#            y = y_origin + row * pixel_height
-#            elevation = elevation_data[row, col]
-#            elevation_list.append({'longitude': x, 'latitude': y, 'elevation': elevation})
-
-    # Write the data to a JSON file
-#    with open(json_file, 'w') as f:
-#        json.dump(elevation_list, f)
-
-#raster_to_georeferenced_json('flood_height.tif', 'output_3Dmesh_1.json')
+create_flood_mesh(array, array.shape[1], array.shape[0], transform)
+bpy.ops.export_scene.gltf(filepath="D:/flood_model_test_output.glb", export_apply=True, export_extras=True)
