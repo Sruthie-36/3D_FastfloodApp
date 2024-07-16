@@ -143,65 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	 meshbutton.addEventListener('click', () => {
 		//window.open('/view_floodmesh.html', '_blank');
 		window.open('http://localhost:8081/3d_dev/water.html', '_blank')
-	// 	Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZjkyMzk4ZC1iMzdhLTRhNGMtYTAyMy1hNjE3YjMwMTQ3YTkiLCJpZCI6MTkwNTc2LCJpYXQiOjE3MTYyMDcwMzV9.K5Xn9YIdcDqEJnAsDm9tbMR8e_fURZ-Rn6jpMp7EDSI";
-        
-	// 	async function loadurl_3d () {
-	// 		let resource = await Cesium.IonResource.fromAssetId(2621143);
-	// 		return resource;
-	// 	};
-	// 	const position = Cesium.Cartesian3.fromDegrees( -61.451490, 15.460817,
-	// 		// 15.4604,
-	// 		// 61.4516,
-	// 		1000
-	// 	  );
-	// 	resource = loadurl_3d().catch(console.error);
-	// 	  const heading = Cesium.Math.toRadians(90);
-	// 	  const pitch = 0;
-	// 	  const roll = 0;
-	// 	  const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
-	// 	  const orientation = Cesium.Transforms.headingPitchRollQuaternion(
-	// 		position,
-	// 		hpr
-	// );
-  
-	// 		const entity1 = viewer.entities.add({
-	// 		name: resource,
-	// 		position: position,
-	// 		orientation: orientation,
-	// 		model: {
-	// 			uri: resource,
-	// 			minimumPixelSize: 128,
-	// 			maximumScale: 20000,
-	// 			scale: 10.0, // Adjust this value to fit the model in view
-    //                 color: Cesium.Color.BLUE,
-    //                 colorBlendMode: Cesium.ColorBlendMode.REPLACE,
-	// 		},
-	// 		});
-	// 		viewer.zoomTo(entity1).then(() => {
-    //             // Optionally, you can adjust the camera to better fit the model
-    //             viewer.trackedEntity = entity1;
-    //         });
-			//viewer.trackedEntity = entity1;
-			//viewer.zoomTo(position);
-			// viewer.camera.flyTo({
-            //     destination: position,
-            //     orientation: {
-            //         heading: Cesium.Math.toRadians(0),
-            //         pitch: Cesium.Math.toRadians(-45),
-            //         roll: 0.0
-            //     }
-            // });
+	
 			console.log("entity added", entity1)
 
 	 });
 	 
-
-	 // Remove the element with class "cesium-viewer-animationContainer"
-	//  const animationContainer = document.querySelector('.cesium-viewer-animationContainer')
-	//  if (animationContainer) {
-	// 	 animationContainer.remove();
-	//  }
-	//document.querySelector('.cesium-viewer-animationContainer').remove();
 
 	     // Add a file input button to Cesium's toolbar
 		 //const cesiumToolbar = document.querySelector('.cesium-viewer-toolbar');
@@ -337,65 +283,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				alert("Could not load dem, possibly incorrect file type (should be GeoTIFF), or lacking a coordinate system. More detail here:" + e.message);
 			}
 		}
-		// Sandcastle.addToolbarButton("Toggle Boxes", function () {
-		// 	// boxes.show = !boxes.show;
-		// 	console.log("hello");
-		//   });
+		
 	});
-
-		//});
-	// 	 fileInput.addEventListener('change', async function(event) {
-	// 		 if (typeof event.target.files[0] === "undefined") {
-	// 			 // File select canceled
-	// 		 } else if (typeof event.target.files[0].name === "undefined") {
-	// 			 alert('Cannot read this file');
-	// 		 } else {
-	// 			 if (event.target.files[0].name.length > 0) {
-	// 				 const file = event.target.files[0];
-	// 				 try {
-	// 					 const arrayBuffer = await file.arrayBuffer();
-	// 					 const tiff = await GeoTIFF.fromArrayBuffer(arrayBuffer);
-	// 					 const image = await tiff.getImage();
-	// 					 const bbox = image.getBoundingBox();
-	// 					 const width = image.getWidth();
-	// 					 const height = image.getHeight();
-	// 					 const rasterData = await image.readRasters();
-	 
-	// 					 const canvas = document.createElement('canvas');
-	// 					 canvas.width = width;
-	// 					 canvas.height = height;
-	// 					 const context = canvas.getContext('2d');
-	 
-	// 					 const imageData = context.createImageData(width, height);
-	// 					 for (let i = 0; i < rasterData[0].length; i++) {
-	// 						 const value = rasterData[0][i];
-	// 						 imageData.data[i * 4] = value; // Red
-	// 						 imageData.data[i * 4 + 1] = value; // Green
-	// 						 imageData.data[i * 4 + 2] = value; // Blue
-	// 						 imageData.data[i * 4 + 3] = 255; // Alpha
-	// 					 }
-	// 					 context.putImageData(imageData, 0, 0);
-	 
-	// 					 const url = canvas.toDataURL();
-	// 					 cesiumViewer.entities.add({
-	// 						 rectangle: {
-	// 							 coordinates: Cesium.Rectangle.fromDegrees(...bbox),
-	// 							 material: new Cesium.ImageMaterialProperty({
-	// 								 image: url
-	// 							 })
-	// 						 }
-	// 					 });
-	// 				 } catch (error) {
-	// 					 alert('Error processing GeoTIFF file');
-	// 					 console.log("error : ", error)
-	// 				 }
-	// 			 } else {
-	// 				 alert('Cannot read this file');
-	// 			 }
-	// 		 }
-	// 	 });
-	 
-	// });
 
 
 function view_in_3d() {
@@ -412,12 +301,7 @@ function view_in_3d() {
 							}),
 							//baseLayerPicker: false
 					});
-		// Add the OSM Imagery Layer
-        // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-        //     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        //     credit: '© OpenStreetMap contributors',
-        //     subdomains: ['a', 'b', 'c']
-        // }));
+
 
 		// Add legend to the Cesium viewer bottom
 	function addLegend() {
@@ -457,84 +341,18 @@ function view_in_3d() {
 
 	// Call addLegend to place the legend in the viewer
 	addLegend();
-	// // Initialize Leaflet map overlay
-	// var leafletMap = L.Map('leafletContainer', {
-	// 	center: [0, 0],
-	// 	zoom: 2,
-	// 	zoomControl: false,
-	// 	attributionControl: false,
-	// 	dragging: false,
-	// 	touchZoom: false,
-	// 	scrollWheelZoom: false,
-	// 	doubleClickZoom: false,
-	// 	boxZoom: false,
-	// 	keyboard: false
-	// });
-	// console.log(leafletMap)
-	// Add OSM building dataset
-	//let buildingTileset;
+
 	
 
 	
 	let osmBuildingTileset;
         try {
-        //     // buildingTileset = await Cesium.Cesium3DTileset.fromIonAssetId(
-        //     // 96188);
-        //     // viewer.scene.primitives.add(buildingTileset);
-		// Function to convert longitude/latitude to Cartesian3
-			// function lonLatToCartesian(lon, lat) {
-			// 	return Cesium.Cartesian3.fromDegrees(lon, lat);
-			// }
-
-			// // Convert raster bounds to Cartesian3 points
-			// const minPoint = lonLatToCartesian(xmin, ymin);
-			// const maxPoint = lonLatToCartesian(xmax, ymax);
-
-			// // Create the clipping planes
-			// const westPlane = new Cesium.ClippingPlane(Cesium.Cartesian3.UNIT_X, -minPoint.x);
-			// const eastPlane = new Cesium.ClippingPlane(Cesium.Cartesian3.UNIT_X.negate(), maxPoint.x);
-			// const southPlane = new Cesium.ClippingPlane(Cesium.Cartesian3.UNIT_Y, -minPoint.y);
-			// const northPlane = new Cesium.ClippingPlane(Cesium.Cartesian3.UNIT_Y.negate(), maxPoint.y);
-
-			// // Create the clipping plane collection
-			// const clippingPlaneCollection = new Cesium.ClippingPlaneCollection({
-			// 	planes: [westPlane, eastPlane, southPlane, northPlane],
-			// 	edgeWidth: 1.0,
-			// 	edgeColor: Cesium.Color.WHITE
-			// });
-
-			// Cesium.createOsmBuildingsAsync().then((tileset) => {
-			// 	osmBuildingTileset = tileset;
-			// 	osmBuildingTileset.clippingPlanes = clippingPlaneCollection;
-			// 	viewer.scene.primitives.add(osmBuildingTileset);
-			// });
-				// Create the clipping planes
-			// const westPlane = new Cesium.ClippingPlane(new Cesium.Cartesian3(1.0, 0.0, 0.0), -Cesium.Math.toRadians(xmin));
-			// const eastPlane = new Cesium.ClippingPlane(new Cesium.Cartesian3(-1.0, 0.0, 0.0), Cesium.Math.toRadians(xmax));
-			// const southPlane = new Cesium.ClippingPlane(new Cesium.Cartesian3(0.0, 1.0, 0.0), -Cesium.Math.toRadians(ymin));
-			// const northPlane = new Cesium.ClippingPlane(new Cesium.Cartesian3(0.0, -1.0, 0.0), Cesium.Math.toRadians(ymax));
-
-			// // Create the clipping plane collection
-			// const clippingPlaneCollection = new Cesium.ClippingPlaneCollection({
-			// 	planes: [westPlane, eastPlane, southPlane, northPlane],
-			// 	edgeWidth: 1.0,
-			// 	edgeColor: Cesium.Color.WHITE
-			// });
-
-			// 	Cesium.createOsmBuildingsAsync().then((tileset) => {
-			// 		osmBuildingTileset = tileset;
-			// 		osmBuildingTileset.clippingPlanes = clippingPlaneCollection;
-			// 		viewer.scene.primitives.add(osmBuildingTileset);
-			// 	});
+      
 				Cesium.createOsmBuildingsAsync().then((tileset) => {
 					osmBuildingTileset = tileset;
 					viewer.scene.primitives.add(osmBuildingTileset);
 				});
-			//  Cesium.createOsmBuildingsAsync().then((osmBuildingTileset) => {
-			// 	viewer.scene.primitives.add(osmBuildingTileset);
-			//   });
-		// 	// buildingTileset = Cesium.createOsmBuildings();
-		// 	// viewer.scene.primitives.add(buildingTileset);
+			
 
         } catch (error) {
         console.log(`Error loading building tileset.
@@ -545,63 +363,10 @@ function view_in_3d() {
 		function () {
 			window.open('http://localhost:8081/3d_dev/water%20copy%202.html', '_blank')
 			
-		// 	function createModel (url, height) {
-		// 		//viewer.entities.removeAll();
-		// 		console.log("create model triggered")
-		// 		const position1 = Cesium.Cartesian3.fromDegrees( -61.451490, 15.460817,
-		// 		  // 15.4604,
-		// 		  // 61.4516,
-		// 		  height
-		// 		);
-		// 	  console.log("pos1", position1)
-		// 		const heading = Cesium.Math.toRadians(90);
-		// 		const pitch = 0;
-		// 		const roll = 0;
-		// 		const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
-		// 		const orientation = Cesium.Transforms.headingPitchRollQuaternion(
-		// 		  position1,
-		// 		  hpr);
-		// 		  console.log("pos2", position1)
-		// 		console.log("viewer : ", viewer)
-		// 	viewer.entities.add({
-		// 		name: url,
-		// 		position: position1,
-		// 		orientation: orientation,
-		// 		model: {
-		// 		uri: url,
-		// 		minimumPixelSize: 128,
-		// 		maximumScale: 20000,
-		// 		},
-		// 	});
-		// 	console.log("pos3", position1)
-		//   //viewer.trackedEntity = entity1;
-		//   viewer.zoomTo(position1)
-		 
-		//   //return viewer
-		// }
-			
 		
-		// createModel(
-		// 		"bef.glb",
-		// 		500.0
-		// 	  );
-	
-			//   createModel(
-			// 	"aft.glb",
-			// 	1000.0
-			//   );
 			  console.log("textured 3d loaded")
 		 });
-	// // Zoom to roseau
-	// var roseauPosition = Cesium.Cartesian3.fromDegrees(-61.376450, 15.304117, 1000); // Longitude, Latitude, Height
-    //         viewer.camera.flyTo({
-    //             destination: roseauPosition,
-    //             orientation: {
-    //                 heading: Cesium.Math.toRadians(0),
-    //                 pitch: Cesium.Math.toRadians(-45),
-    //                 roll: 0.0
-    //             }
-    //         });
+	
 	// Simulation results
 	if(RasterWH[current_area] === null)
 	{
@@ -609,39 +374,13 @@ function view_in_3d() {
 	}else{
 		var noDataValue = RasterDEM[current_area].noDataValue;
 		var projection = RasterDEM[current_area].projection;
-		// var xmin = RasterDEM[current_area].xmin;
-		// var ymax = RasterDEM[current_area].ymax;
-		// var ymin = RasterDEM[current_area].ymin;
-		// var xmax = RasterDEM[current_area].xmax;
-		// var pixelWidth = RasterDEM[current_area].pixelWidth;
-		// var pixelHeight = RasterDEM[current_area].pixelHeight;
-		// console.log("print result details",RasterWH[current_area].values,
-		// 	RasterWH[current_area].width,
-		// 	RasterWH[current_area].height,
-		// 	noDataValue,
-		// 	projection,
-		// 	//xmin,
-		// 	//ymax,
-		// 	// pixelWidth,
-		// 	// pixelHeight,
-		// 	"flood");
-		//console.log("layer wh ", layer_WH[current_area])
+		
 	}
 		let xmin = layer_WH[current_area].getBounds().getWest()
 		let ymin = layer_WH[current_area].getBounds().getSouth()
 		let xmax = layer_WH[current_area].getBounds().getEast()
 		let ymax = layer_WH[current_area].getBounds().getNorth()
-		// Create an OpenLayers map and add both layers
-		//var map1 = new L.map('cesiumContainer');
-		// 	{
-		// 	target: 'cesiumContainer', // The id of the HTML element where the map will be rendered
-		// 	layers: [layer_WH[current_area],],
-		// 	view: new ol.View({
-		// 	center: ol.proj.fromLonLat([-61.376450, 15.304117]), // Centered on the USA
-		// 	zoom: 4
-		// 	})
-		// });
-		// var temp_layer = layer_WH[current_area];
+		
 		// Function to get the pixel value from the raster array based on geographic coordinates
 		var getPixelValueFromRasterArray = function (rasterArray, xmin, ymin, xmax, ymax, longitude, latitude) {
 			const width = rasterArray[0].length;
@@ -967,35 +706,7 @@ function view_in_3d() {
 				}
 
 				classifyBuildingsBasedOnRaster();
-					// console.log("properties", osmBuildingTileset.properties)
-					// console.log("feature ", osmBuildingTileset.features)
-					// console.log("building", osmBuildingTileset.properties.building)
-					// osmBuildingTileset.tileLoad.addEventListener((tile) => {
-					// 	console.log("tile ", tile);
-					// });
-					// osmBuildingTileset.tileVisible.addEventListener(function(tile) {
-					// 	const content = tile.content;
-					// 	const featuresLength = content.featuresLength;
-						//console.log(content);
-						//console.log(featuresLength);
-					// });
-					// osmBuildingsTileset.style = new Cesium.Cesium3DTileStyle({
-					// 	defines: {
-					// 	  material: "${feature['building:material']}",
-					// 	},
-					// 	color: {
-					// 	  conditions: [
-					// 		["${material} === null", "color('white')"],
-					// 		["${material} === 'glass'", "color('skyblue', 0.5)"],
-					// 		["${material} === 'concrete'", "color('grey')"],
-					// 		["${material} === 'brick'", "color('indianred')"],
-					// 		["${material} === 'stone'", "color('lightslategrey')"],
-					// 		["${material} === 'metal'", "color('lightgrey')"],
-					// 		["${material} === 'steel'", "color('lightsteelblue')"],
-					// 		["true", "color('white')"], // This is the else case
-					// 	  ],
-					// 	},
-					//   });
+					
 				});
 
 				document.getElementById('close_cesium').addEventListener('click',
@@ -1007,360 +718,4 @@ function view_in_3d() {
 						   document.getElementById('cesiumOverlay').style.display = 'none';
 						 });
 			}
-				// 	let latitude
-				// 	let longitude
-				// 	let rasterValue
-
-				// 	Cesium.createOsmBuildingsAsync().then((tileset) => {
-				// 		osmBuildingTileset = tileset;
-				// 		viewer.scene.primitives.add(osmBuildingTileset);
-
-				// 	osmBuildingTileset.tileLoad.addEventListener((tile) => {
-				// 		tile.content.features.forEach((feature) => {
-				// 			longitude = feature.getProperty('cesium#longitude');
-				// 			latitude = feature.getProperty('cesium#latitude');
-				// 			rasterValue = getRasterValue(longitude, latitude);
-				// 			feature.setProperty('waterdepth', rasterValue);
-				// 			console.log('waterdepth',rasterValue);
-				// 		});
-				// 	});
-				// 	if (longitude && latitude) {
-				// 	osmBuildingTileset.style = new Cesium.Cesium3DTileStyle({
-				// 		color: {
-				// 			conditions: [
-				// 				["Number(${waterdepth}) >= 1", "color('red')"],
-				// 				["Number(${waterdepth}) >= 0.5", "color('orange')"],
-				// 				["true", "color('lightgreen')"]
-				// 			]
-				// 		},
-				// 		// show: {
-				// 		// 	conditions: [
-				// 		// 		['${latitude} >= ' + ymin + ' && ${latitude} <= ' + ymax + ' && ${longitude} >= ' + xmin + ' && ${longitude} <= ' + xmax, 'true'],
-				// 		// 		['true', 'false']
-				// 		// 	]
-				// 		// }
-				// 	});}
-				// });
-			//});
-
-					// Style buildings based on raster values and bounds
-				// osmBuildingTileset.style = new Cesium.Cesium3DTileStyle({
-				// 	show: true,
-				// 	color: {
-				// 		conditions: [
-				// 			// Condition to color buildings based on raster value
-				// 			["Number(${rasterValue}) > 1", "color('red')"],
-				// 			["Number(${rasterValue}) > 0.5", "color('orange')"],
-				// 			["true", "color('lightgreen')"]
-				// 		]
-				// 	},
-				// 	// Condition to show buildings within specified bounds
-				// 	show: '${latitude} >= ' + ymin + ' && ${latitude} <= ' + ymax + ' && ${longitude} >= ' + xmin + ' && ${longitude} <= ' + xmax,
-				// 	// Condition to hide buildings outside the bounds
-				// 	show: 'true',
-				// });
-					// const rasterValue = getPixelValueFromRasterArray(RasterWH[current_area].values[0], xmin, ymin, xmax, ymax, longitude, latitude);
-					// 					// Function to classify OSM buildings based on raster values
-					// function classifyBuildingsBasedOnRaster() {
-					// 	if (!rasterLayerAdded) {
-					// 		console.error("Please add the raster layer first.");
-					// 		return;
-					// 	}
-
-					// 	const style = new Cesium.Cesium3DTileStyle({
-					// 		color: {
-					// 			conditions: [
-					// 				// Red color for pixel values greater than 1
-					// 				["Number(${rasterValue}) > 1", "color('red')"],
-					// 				// Orange color for pixel values greater than 0.5
-					// 				["Number(${rasterValue}) > 0.5", "color('orange')"],
-					// 				["Number(${rasterValue}) > 0", "color('lightgreen')"],
-					// 				["true", "color('black')"]
-									
-					// 			]
-					// 		}
-					// 	});
-
-					// 	osmBuildingTileset.style = style;
-					// }
-
-
-					// function colorByDistanceToCoordinate(pickedLatitude, pickedLongitude) {
-					// 	buildingTileset.style = new Cesium.Cesium3DTileStyle({
-					// 		defines: {
-					// 		distance: `distance(vec2(\${feature['cesium#longitude']}, \${feature['cesium#latitude']}), vec2(${pickedLongitude},${pickedLatitude}))`,
-					// 		},
-					// 		color: {
-					// 		conditions: [
-					// 			["${distance} > 0.030", "color('gold')"],
-					// 			["${distance} > 0.020", "color('red')"],
-					// 			["${distance} < 0.020", "color('red')"],
-					// 			["true", "color('white')"],
-					// 		],
-					// 		},
-					// 	});
-					// 	}
-			
-
-
-
-					// // Function to precompute raster values for coordinates
-					// function precomputeRasterValues(rasterArray, xmin, ymin, xmax, ymax) {
-					// 	const values = {};
-					// 	for (let longitude = xmin; longitude <= xmax; longitude += 0.001) { // Adjust step size as needed
-					// 		for (let latitude = ymin; latitude <= ymax; latitude += 0.001) { // Adjust step size as needed
-					// 			const pixelValue = getPixelValueFromRasterArray(rasterArray, xmin, ymin, xmax, ymax, longitude, latitude);
-					// 			if (pixelValue !== 'N/A') {
-					// 				values[`${longitude.toFixed(3)},${latitude.toFixed(3)}`] = pixelValue;
-					// 			}
-					// 		}
-					// 	}
-					// 	return values;
-					// }
-
-					// Function to classify OSM buildings based on raster values
-					// function classifyBuildingsBasedOnRaster(rasterArray, xmin, ymin, xmax, ymax) {
-					// 	const rasterValues = precomputeRasterValues(rasterArray, xmin, ymin, xmax, ymax);
-
-					// 	// const style = new Cesium.Cesium3DTileStyle({
-					// 	// 	color: {
-					// 	// 		conditions: [
-					// 	// 			// Red color for pixel values greater than 1
-					// 	// 			[
-					// 	// 				`Number(${rasterValues['\${feature["cesium#longitude"]},\${feature["cesium#latitude"]}']}) > 1`, 
-					// 	// 				"color('red')"
-					// 	// 			],
-					// 	// 			// Orange color for pixel values greater than 0.5
-					// 	// 			[
-					// 	// 				`Number(${rasterValues['\${feature["cesium#longitude"]},\${feature["cesium#latitude"]}']}) > 0.5`, 
-					// 	// 				"color('orange')"
-					// 	// 			],
-					// 	// 			// Light green for other pixel values
-					// 	// 			[
-					// 	// 				`Number(${rasterValues['\${feature["cesium#longitude"]},\${feature["cesium#latitude"]}']}) <= 0.5`,
-					// 	// 				"color('lightgreen')"
-					// 	// 			],
-					// 	// 			["true", "color('white')"] // Default color for other buildings
-					// 	// 		]
-					// 	// 	}
-					// 	// });
-
-					// 	// osmBuildingTileset.style = style;
-					// 	    // Generate conditions dynamically
-					// 	const conditions = [
-					// 		// Default to white for buildings outside raster extent or without defined values
-					// 		["true", "color('white')"]
-					// 	];
-
-					// 	for (const [coords, pixelValue] of Object.entries(rasterValues)) {
-					// 		const [longitude, latitude] = coords.split(',').map(Number);
-					// 		if (pixelValue > 1) {
-					// 			conditions.unshift([
-					// 				// Use Cesium.Cartesian3.distance to compare positions
-					// 				`Cesium.Cartesian3.distance(\${feature['cesium#position']}, Cesium.Cartesian3.fromRadians(${longitude}, ${latitude})) < 100.0`, 
-					// 				"color('red')"
-					// 			]);
-					// 		} else if (pixelValue > 0.5) {
-					// 			conditions.unshift([
-					// 				`Cesium.Cartesian3.distance(\${feature['cesium#position']}, Cesium.Cartesian3.fromRadians(${longitude}, ${latitude})) < 100.0`, 
-					// 				"color('orange')"
-					// 			]);
-					// 		} else {
-					// 			conditions.unshift([
-					// 				`Cesium.Cartesian3.distance(\${feature['cesium#position']}, Cesium.Cartesian3.fromRadians(${longitude}, ${latitude})) < 100.0`, 
-					// 				"color('lightgreen')"
-					// 			]);
-					// 		}
-					// 	}
-
-					// 	const style = new Cesium.Cesium3DTileStyle({
-					// 		color: {
-					// 			conditions: conditions
-					// 		}
-					// 	});
-
-					// 	osmBuildingTileset.style = style;
-					// }
-
-					// classifyBuildingsBasedOnRaster(RasterWH[current_area].values[0], xmin, ymin, xmax, ymax);
-					//    // Function to apply color based on raster value
-					// 	function applyColorToBuildings(rasterArray, xmin, ymin, xmax, ymax) {
-					// 		osmBuildingTileset.tileVisible.addEventListener((tile) => {
-					// 			const content = tile.content;
-					// 			for (let i = 0; i < content.featuresLength; i++) {
-					// 				const feature = content.getFeature(i);
-					// 				const boundingVolume = feature.boundingVolume;
-					// 				const center = boundingVolume.boundingSphere.center;
-
-					// 				// Convert Cartesian3 to Cartographic to get longitude and latitude
-					// 				const cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(center);
-					// 				const longitude = Cesium.Math.toDegrees(cartographic.longitude);
-					// 				const latitude = Cesium.Math.toDegrees(cartographic.latitude);
-
-					// 				// Check if the position is within the raster extent
-					// 				if (longitude >= xmin && longitude <= xmax && latitude >= ymin && latitude <= ymax) {
-					// 					const pixelValue = getPixelValueFromRasterArray(rasterArray, xmin, ymin, xmax, ymax, longitude, latitude);
-
-					// 					// Apply color based on pixel value
-					// 					if (pixelValue !== 'N/A') {
-					// 						const color = getColorFromPixelValue(pixelValue);
-					// 						feature.color = color;
-					// 					}
-					// 				}
-					// 			}
-					// 		});
-					// 	}
-
-					// 	// Function to convert pixel value to color
-					// 	function getColorFromPixelValue(pixelValue) {
-					// 		if (pixelValue > 0.15) {
-					// 			return new Cesium.Color.fromCssColorString('#00FF00');
-					// 		} else if (pixelValue > 0.5) {
-					// 			return new Cesium.Color.fromCssColorString('#FFA500');
-					// 		} else if (pixelValue > 1) {
-					// 			return new Cesium.Color.fromCssColorString('#FF0000');
-					// 		}
-					// 		return new Cesium.Color.fromCssColorString('#808080');
-					// 	}
-
-					// 	applyColorToBuildings(RasterWH[current_area].values[0], xmin, ymin, xmax, ymax);
-					// });
-		// Event listener for mouse move to update raster value dynamically
-		// viewer.scene.screenSpaceCameraController.enableTilt = false;
-		// viewer.screenSpaceEventHandler.setInputAction(function onMouseMove(movement) {
-		// 	if (!rasterLayerAdded) return;
-
-		// 	const ray = viewer.camera.getPickRay(movement.endPosition);
-		// 	const position = viewer.scene.globe.pick(ray, viewer.scene);
-
-		// 	if (Cesium.defined(position)) {
-		// 		const cartographicPosition = Cesium.Cartographic.fromCartesian(position);
-		// 		const longitude = Cesium.Math.toDegrees(cartographicPosition.longitude);
-		// 		const latitude = Cesium.Math.toDegrees(cartographicPosition.latitude);
-
-		// 		const rasterValue = getPixelValueFromRasterArray(RasterWH[current_area].values[0], xmin, ymin, xmax, ymax, longitude, latitude);
-
-		// 		// Update the style condition dynamically
-		// 		osmBuildingTileset.style = new Cesium.Cesium3DTileStyle({
-		// 			color: {
-		// 				conditions: [
-		// 					["Number(${rasterValue}) > 1", "color('red')"],
-		// 					["Number(${rasterValue}) > 0.5", "color('orange')"],
-		// 					["Number(${rasterValue}) > 0", "color('lightgreen')"],
-		// 					["true", "color('black')"]
-		// 				]
-		// 			}
-		// 		});
-		// 	}
-		// }, Cesium.ScreenSpaceEventType.WHEEL);
-
-        //var provider = Cesium.IonImageryProvider.fromAssetId(2585819);
-        // var imageryLayer = viewer.imageryLayers.addImageryProvider(
-		// 	temp_layer,
-        // );
-		//var layerControl = L.control.layers({temp_layer}).addTo(map1);
-		//map.addLayer(layer_WH[current_area]);
-		// Create a Cesium viewer and attach it to the OpenLayers map
-		// var ol2d = new olcs.OLCesium({map: map1});
-		// var scene = ol2d.getCesiumScene();
-		
-		// // Enable the Cesium viewer
-		//ol2d.setEnabled(true);
-		// const olImageryProvider = new olcs.OLImageryProvider({
-		// 	olLayer: temp_layer,
-		// 	olMap: map1
-		//   });
-		  
-		//   viewer.scene.imageryLayers.addImageryProvider(olImageryProvider);
-		// Func to color the buildings based on their distance from a selected central location
-		// function colorByDistanceToCoordinate(pickedLatitude, pickedLongitude) {
-		// 	osmBuildingTileset.style = new Cesium.Cesium3DTileStyle({
-		// 		defines: {
-		// 		distance: `distance(vec2(\${feature['cesium#longitude']}, \${feature['cesium#latitude']}), vec2(${pickedLongitude},${pickedLatitude}))`,
-		// 		},
-		// 		color: {
-		// 		conditions: [
-		// 			["${distance} > 0.014", "color('green')"],
-        //             ["${distance} > 0.010", "color('gold')"],
-        //             ["${distance} > 0.006", "color('coral')"],
-        //             ["${distance} > 0.0001", "color('crimson')"],
-        //             ["true", "color('white')"],
-		// 		],
-		// 		},
-		// 	});
-		// 	}
-	    //    // Load GeoJSON data
-        // var dataSourcePromise = Cesium.GeoJsonDataSource.load('/resources/waterdepth1.geojson');
-
-		// //RasterWH[current_area]
-        // // Add GeoJSON data to the viewer
-        // dataSourcePromise.then(function(dataSource) {
-        //     //viewer.dataSources.add(dataSource);
-        //     const entities = dataSource.entities.values;
-        //     console.log("entities", entities)
-        //     for (var i = 0; i < entities.length; i++) {
-        //         const entity = entities[i];
-        //         console.log(entity.properties)
-        //         if (entity.properties.waterdepth == "0") {
-        //             entity.polygon.material = Cesium.Color.LIGHTGREY.withAlpha(0) ;
-        //             entity.polygon.heightReference  = Cesium.HeightReference.CLAMP_TO_GROUND;
-        //         } else if (entities[i].properties.waterdepth == "1") {
-        //             entity.polygon.material = Cesium.Color.LIGHTSKYBLUE ;
-        //             entity.polygon.heightReference = Cesium.HeightReference.CLAMP_TO_GROUND;
-        //             //entity.polygon.extrudedHeight = 2;
-        //         } else if (entities[i].properties.waterdepth == "2") {
-        //             entity.polygon.material = Cesium.Color.DARKBLUE ;
-        //             entity.polygon.heightReference = Cesium.HeightReference.CLAMP_TO_GROUND;
-        //             //entity.polygon.extrudedHeight = 4;
-        //         }
-        //         entity.polygon.outline = false;
-        //         viewer.entities.add(entity)
-        //     }
-            
-		// 	// Assigning color to OSM buildings
-        //     for (var i = 0; i < entities.length; i++) {
-        //         const entity = entities[i];
-        //         var pickedLatitude = entity.properties.lat;
-        //         var pickedLongitude = entity.properties.long;
-
-        //         if (entity.properties.waterdepth == "2") {
-        //             colorByDistanceToCoordinate(pickedLatitude, pickedLongitude)
-        //         }    
-        //     }
-
-
-        // }).catch(function(error) {
-        //     console.error('Error loading GeoJSON:', error);
-        // });
-	
-
-	// // Load GeoJSON data
-	// var dataSourcePromise = Cesium.GeoJsonDataSource.load('/resources/waterdepth.geojson');
-	// console.log("datasource added")
-	// // Add GeoJSON data to the viewer
-	// dataSourcePromise.then(function(dataSource) {
-	// 	//viewer.dataSources.add(dataSource);
-	// 	const entities = dataSource.entities.values;
-	// 	console.log("entities ", entities)
-	// 	for (var i = 0; i < entities.length; i++) {
-	// 		const entity = entities[i];
-			
-	// 		if (entity.properties.waterdepth == "0") {
-	// 			entity.polygon.material = Cesium.Color.LIGHTGREY.withAlpha(0) ;
-	// 			//entity.polygon.heightReference  = Cesium.HeightReference.CLAMP_TO_GROUND;
-	// 		} else if (entities[i].properties.waterdepth == "1") {
-	// 			entity.polygon.material = Cesium.Color.LIGHTSKYBLUE ;
-	// 			//entity.polygon.heightReference = Cesium.HeightReference.CLAMP_TO_GROUND;
-	// 			//entity.polygon.extrudedHeight = 2;
-	// 		} else if (entities[i].properties.waterdepth == "2") {
-	// 			entity.polygon.material = Cesium.Color.DARKBLUE ;
-	// 			//entity.polygon.heightReference = Cesium.HeightReference.CLAMP_TO_GROUND;
-	// 			//entity.polygon.extrudedHeight = 4;
-	// 		}
-	// 		entity.polygon.outline = false;
-	// 		viewer.entities.add(entity)
-	// 	}
-
-	// }).catch(function(error) {
-	// 	console.error('Error loading GeoJSON:', error);
-	// });
+				
